@@ -48,6 +48,9 @@ def execute(processes):
         loop = asyncio.get_event_loop()
         loop.run_until_complete(main())
         loop.close()
+    except Exception as e:
+        logger.error("Abnormal termination: {}".format(e))
+        raise e
     finally:
         cleanup(processes)
 

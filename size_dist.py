@@ -30,4 +30,5 @@ class PlotSizeDist(ProcessBase):
         ax.set_ylabel("Count per 0.1L")
         fpath = Path(self.server_dir) / "size_distribution.png"
         fig.savefig(fpath.absolute())
+        plt.close(fig)
         logger.debug("Size distribution plot generated.")

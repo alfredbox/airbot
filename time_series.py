@@ -51,6 +51,7 @@ class PlotTimeSeries(ProcessBase):
         ax.legend()
         fpath = Path(self.server_dir) / "aqi_series.png"
         fig.savefig(fpath.absolute())
+        plt.close(fig)
         logger.debug("AQI series plot generated.")
 
 
