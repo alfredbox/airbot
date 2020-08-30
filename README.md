@@ -23,6 +23,7 @@ sudo apt install apache2 -y
 Then take ownership of the website directory for your user.
 ```
 sudo chown <user>: /var/www/html
+sudo chown <user>: /var/www/html/index.html
 ```
 
 Finally go into this project's directory and satisfy any Python requirements
@@ -47,7 +48,7 @@ The file must contain the following JSON formatted config:
 ```JSON
 {
     "ifttt_url": "<your url here>",
-    "webserver_dir": "/var/www/html".
+    "webserver_dir": "/var/www/html",
     "serial_port": "/dev/ttyS0"
 }
 ```
