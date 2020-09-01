@@ -6,7 +6,7 @@ Internet connected air quality sensor using Raspberry pi and IFTTT webhooks.
 
 This project uses a [Raspberry pi](https://www.raspberrypi.org/) (model 3 tested) and a [PMS5003 particulate matter sensor](https://www.adafruit.com/product/3686) from [Adafruit](https://www.adafruit.com/product/3686). The PMS5003 connects to Raspberry pi using serial UART RX pin. Wiring instructions are provided on the Adafruit [documention page](https://learn.adafruit.com/pm25-air-quality-sensor). 
 
-![Photo of airbot hardware.](/img/airbot_photo.png)
+![Photo of airbot hardware.](/img/airbot_photo.jpg)
 
 ## Raspberry Pi Setup
 
