@@ -6,7 +6,7 @@ Internet connected air quality sensor using Raspberry pi and IFTTT webhooks.
 
 This project uses a [Raspberry pi](https://www.raspberrypi.org/) (model 3 tested) and a [PMS5003 particulate matter sensor](https://www.adafruit.com/product/3686) from [Adafruit](https://www.adafruit.com/product/3686). The PMS5003 connects to Raspberry pi using serial UART RX pin. Wiring instructions are provided on the Adafruit [documention page](https://learn.adafruit.com/pm25-air-quality-sensor). 
 
-<img src="img/airbot_photo.png", alt="Photo of airbot hardware.", width="500">
+![Photo of airbot hardware.](/img/airbot_photo.png)
 
 ## Raspberry Pi Setup
 
@@ -40,7 +40,7 @@ This project is setup to send a notification to your phone if the PM2.5 Air Qual
 ## Local intranet dashboard
 This project also creates and serves a basic dashboard from the Raspberry pi. To view it simply enter the Raspberry pi's IP address into the browser of a device that is on the same network. It looks like this:
 
-<img src="img/airbot_dash.png", alt="Screenshot of airbot dashboard.", width="500">
+![Screenshot of airbot dashboard.](/img/airbot_dash.png)
 
 ## Config file
 You need to create the following config file on the Raspberry pi's filesystem:
