@@ -24,8 +24,9 @@ class PlotTimeSeries(ProcessBase):
             return
         self.day_history.append(
                 {
-                    "aqi25": self.state.aqdata['pm25 standard'],
-                    "aqi10": self.state.aqdata['pm10 standard'],
+                    "pm25a": self.state.aqdata['pm25 aqi'],
+                    "pm25c": self.state.aqdata['pm25 standard'],
+                    "pm10c": self.state.aqdata['pm10 standard'],
                     "time" : self.state.timestamp
                 })
         self.trim_history()
@@ -33,23 +34,34 @@ class PlotTimeSeries(ProcessBase):
 
     def trim_history(self):
         if self.day_history:
-
             while (self.day_history[-1]["time"] 
                    - self.day_history[0]["time"] 
                    > self.one_day):
                 self.day_history.pop(0)
 
     def plot_history(self):
-        aqi25 = [e["aqi25"] for e in self.day_history]
-        aqi10 = [e["aqi10"] for e in self.day_history]
+        pm25a = [e["pm25a"] for e in self.day_history]
+        pm25c = [e["pm25c"] for e in self.day_history]
+        pm10c = [e["pm10c"] for e in self.day_history]
         tstmp = [e["time"] for e in self.day_history]
+        # AQI plot
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        ax.plot(tstmp, aqi25, label="PM2.5 AQI")
-        ax.plot(tstmp, aqi10, label="PM1.0 AQI")
+        ax.plot(tstmp, pm25a)
         ax.set_xlabel("Time")
-        ax.legend()
+        ax.set_ylabel("PM 2.5 AQI")
         fpath = Path(self.server_dir) / "aqi_series.png"
+        fig.savefig(fpath.absolute())
+        plt.close(fig)
+        # Concentraion plot
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(tstmp, pm25c, label="PM2.5")
+        ax.plot(tstmp, pm10c, label="PM1.0")
+        ax.set_xlabel("Time")
+        ax.set_ylabel("Concentraion ($\mu\,g/m^3$)")
+        ax.legend()
+        fpath = Path(self.server_dir) / "conc_series.png"
         fig.savefig(fpath.absolute())
         plt.close(fig)
         logger.debug("AQI series plot generated.")

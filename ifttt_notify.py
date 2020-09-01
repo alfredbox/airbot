@@ -13,7 +13,7 @@ class IFTTTNotify(ProcessBase):
         super().__init__(state, cadence=DEFAULT_CADENCE_S)
         ab_cfg = airbot_config.get_config()
         self.ifttt_url = ab_cfg["ifttt_url"]
-        self.quiet_period = timedelta(minutes=3)
+        self.quiet_period = timedelta(minutes=30)
         self.last_notify = None
 
     def step(self):
