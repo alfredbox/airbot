@@ -13,6 +13,7 @@ class IFTTTNotify(ProcessBase):
         super().__init__(state, cadence=DEFAULT_CADENCE_S)
         ab_cfg = airbot_config.get_config()
         self.ifttt_url = ab_cfg["ifttt_url"]
+        self.notification_threshold = ab_cfg["notification_aqi"]
         self.quiet_period = timedelta(minutes=30)
         self.last_notify = None
 
@@ -27,8 +28,8 @@ class IFTTTNotify(ProcessBase):
                                  int(elapsed/timedelta(minutes=1))))
                 return
 
-        test_value = self.state.aqdata["pm25 standard"]
-        if test_value > 100:
+        test_value = self.state.aqdata["pm25 aqi"]
+        if test_value >= self.notification_threshold:
             msg = "Warning! PM2.5 AQI is {}".format(test_value)
             params = {"value1": msg}
             requests.post(self.ifttt_url, params)

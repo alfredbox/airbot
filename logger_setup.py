@@ -8,5 +8,5 @@ def setup():
 
 def get_logger():
     l = logging.getLogger('airbot')
-    l.setLevel(logging.DEBUG)
+    l.setLevel(logging.INFO)
     return l
