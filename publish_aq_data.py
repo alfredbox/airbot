@@ -16,8 +16,11 @@ HTML_TEMPLATE = """
 <h2>PM 2.5 AQI: {pm25aqi} </h2>
 
 <h2>Raw measuremnts </h2>
-<p> pm 2.5 concentration: {pm25c} &mu;g/m<sup>3</sup></p>
-<p> pm 1.0 concentration: {pm10c} &mu;g/m<sup>3</sup></p>
+<p> PM 2.5 concentration: {pm25c} &mu;g/m<sup>3</sup></p>
+<p> PM 1.0 concentration: {pm10c} &mu;g/m<sup>3</sup></p>
+<p> Effective CO2 concentration: {eco2} ppm</p>
+<p> VOC concentraion: {tvoc} ppb</p>
+<p> Temperature: {temp} Celsius</p>
 
 <h2>Size distribution chart </h2>
 <div>
@@ -31,6 +34,12 @@ HTML_TEMPLATE = """
 </div>
 <div>
 <img src="conc_series.png", alt="Raw concentraions over the last 24 hours", width="400">
+</div>
+<div>
+<img src="co2_series.png", alt="CO2 concentraion over the last 24 hours", width="400">
+</div>
+<div>
+<img src="voc_series.png", alt="VOC concentraions over the last 24 hours", width="400">
 </div>
 """
 
@@ -49,5 +58,8 @@ class AQPublisher(ProcessBase):
             pm25aqi= self.state.aqdata["pm25 aqi"], 
             pm25c = self.state.aqdata["pm25 standard"],
             pm10c = self.state.aqdata["pm10 standard"],
+            eco2 = self.state.aqdata["eCO2"],
+            tvoc = self.state.aqdata["tVOC"],
+            temp = self.state.aqdata["temp"],
             timestamp = self.state.timestamp.strftime('%Y-%m-%d-%H-%M-%S')))
             logger.debug("Webpage updated")

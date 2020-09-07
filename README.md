@@ -4,8 +4,12 @@ Internet connected air quality sensor using Raspberry pi and IFTTT webhooks.
 
 ## Hardware
 
-This project uses a [Raspberry pi](https://www.raspberrypi.org/) (Version 3 and 2 tested) and a [PMS5003 particulate matter sensor](https://www.adafruit.com/product/3686) from [Adafruit](https://www.adafruit.com/product/3686). The PMS5003 connects to Raspberry pi using serial UART RX pin. Wiring instructions are provided on the Adafruit [documention page](https://learn.adafruit.com/pm25-air-quality-sensor). 
+This project uses a [Raspberry pi](https://www.raspberrypi.org/) (Version 3 and 2 tested).
 
+Also a [PMS5003 particulate matter sensor](https://www.adafruit.com/product/3686) from [Adafruit](https://www.adafruit.com/product/3686). The PMS5003 connects to Raspberry pi using serial UART RX pin. Wiring instructions are provided on the Adafruit [documention page](https://learn.adafruit.com/pm25-air-quality-sensor).
+
+Also a [CCS811 CO2 and VOC gas sensor](https://learn.adafruit.com/adafruit-ccs811-air-quality-sensor/overview). The CCS811 connects to the Raspberry pi using i2c. Wiring instructions are provided on the Adafruit [documentation page](https://learn.adafruit.com/adafruit-ccs811-air-quality-sensor/raspberry-pi-wiring-test).
+ 
 ![Photo of airbot hardware.](/img/airbot_photo.jpg)
 
 ## Raspberry Pi Setup
@@ -16,6 +20,8 @@ sudo apt update && sudo apt upgrade
 ```
 
 Make sure UART is correctly enabled. Here is a [good post](https://www.circuits.dk/setup-raspberry-pi-3-gpio-uart/) on how to do this. Here are the official [Raspberry pi docs](https://www.raspberrypi.org/forums/viewtopic.php?t=187392).
+
+Also make sure that i2c is enabled and the correct (non-default) baud rate has been configured. See the [guide here](https://learn.adafruit.com/adafruit-ccs811-air-quality-sensor/raspberry-pi-wiring-test).
 
 Setup an apache web server on the pi to host the dashboard.
 ```

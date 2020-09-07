@@ -3,6 +3,7 @@ import asyncio
 import logger_setup
 import state
 
+import ccs811_read
 import pm25_read
 import publish_aq_data
 import ifttt_notify
@@ -18,8 +19,10 @@ def assemble_processes():
     s = state.State()
     # Configure processes.
     processes = []
-    # PM2.5 sensot reader
+    # PM2.5 sensor reader
     processes.append(pm25_read.PM25Read(s))
+    # CCS811 sensor reader
+    processes.append(ccs811_read.CCS811Read(s))
     # Publish sensor reading to dashboard
     processes.append(publish_aq_data.AQPublisher(s))
     # Send push notification via IFTTT
