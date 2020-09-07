@@ -13,7 +13,7 @@ logger = get_logger()
 
 class PlotTimeSeries(ProcessBase):
     def __init__(self, state):
-        DEFAULT_CADENCE_S = 3
+        DEFAULT_CADENCE_S = 300
         super().__init__(state, cadence=DEFAULT_CADENCE_S)
         ab_cfg = airbot_config.get_config()
         self.server_dir = ab_cfg["webserver_dir"]
