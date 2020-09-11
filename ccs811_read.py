@@ -26,12 +26,12 @@ class CCS811Read(ProcessBase):
             self.state.aqdata["tVOC"] = self.ccs811.tvoc
             self.state.aqdata["temp"] = int(self.ccs811.temperature)
             sampling_time = datetime.now()
-            lag_tolerance = timedelta(seconds=2)
+            lag_tolerance = timedelta(seconds=1.5)
             if abs(self.state.timestamp - sampling_time) > lag_tolerance:
                 logger.error("ccs881 data and pm25 data are out of sync")
             logger.debug("CO2 = {}".format(self.state.aqdata["eCO2"]))
             logger.debug("VOC = {}".format(self.state.aqdata["tVOC"]))
             logger.debug("Temp = {}".format(self.state.aqdata["temp"]))
-        except Exception as e:
+        except RuntimeError as e:
             logger.error(str(e))
 
